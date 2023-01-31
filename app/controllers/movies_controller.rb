@@ -1,5 +1,19 @@
 class MoviesController < ApplicationController
 
+    def index 
+        render json: Movie.all, status: 200
+    end 
+
+    def show 
+        movie = find_movie
+        if movie.present?
+            render json: movie, status: 200 
+        else
+            render json: {error: "Movie not found"}, status: 404
+        end 
+    end 
+
+    
     def create 
         movie = Movie.create!(movie_params)
         render json: movie, status: 202
