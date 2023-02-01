@@ -10,7 +10,7 @@ function NavBar({ user, setUser }) {
     }).then(() => setUser(null));
   }
 
-  console.log(user)
+  // console.log(user)
 
   return (
     <Navbar variant="dark" bg="dark" fixed="top">

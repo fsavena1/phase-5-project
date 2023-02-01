@@ -77,5 +77,6 @@ App
 - scroll pages of movies (our phase 2 project )
 
 - implement a carasole of scrolling (sam and sandy phase 2 project)
+  - different rows for popular/ genres 
 
 - Filtering movies along with search results (sam and sandy phase 2 project)

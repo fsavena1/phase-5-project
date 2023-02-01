@@ -14,6 +14,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true)
+  
 
   useEffect(() => {
     fetch('/auth').then((response) => {
