@@ -35,11 +35,17 @@ class MoviesController < ApplicationController
     private 
 
     def movie_params 
-        params.permit(:title, :description, :image, :rating)
+        params.permit(:title, :description, :image, :rating, :user_id)
     end 
 
     def find_movie
         Movie.find_by(id: params[:id])
+    end
+
+    def check_owner
+        unless Movie.find(params[:id]).user_id == session[:user_id]
+            head :forbidden
+          end
     end
 
 

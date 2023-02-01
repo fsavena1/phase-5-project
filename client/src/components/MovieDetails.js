@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from 'react-bootstrap/Button';
 
-function MovieDetails() {
+function MovieDetails({user}) {
   const [movieDetails, setMovieDetails] = useState([]);
 
   const { id } = useParams();
@@ -29,7 +29,8 @@ function MovieDetails() {
             title: movieDetails.original_title, 
             description: movieDetails.overview, 
             image: movieDetails.poster_path,
-            rating: movieDetails.vote_average
+            rating: movieDetails.vote_average,
+            user_id: user.id
         })
     })
         .then(res => res.json())
@@ -71,7 +72,7 @@ function MovieDetails() {
             Rating:  
              {movieDetails?.vote_average}
           </Card.Text>
-          <Button onClick={handlePost}  > Post Movie to DB</Button>
+          <Button onClick={handlePost}  >Add to Favorites!</Button>
         </Card>
       </div>
     </div>

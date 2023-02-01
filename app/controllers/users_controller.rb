@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
 
     def index 
-        render json=: User.all, status: 200
+        render json= User.all, status: 200
     end 
     
     def show 
-        user = user_find
+        user = User.find_by(id: session[:user_id])
         if user.present?
             render json: user, status: 200
         else 
-            render json: {error: 'User not found'}, status: 404
+            render json: {error: "Not authorized"}, status: 404
         end
     end 
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     end 
 
     def destroy
-        user = find_user
+        user = user_find
         if user.present?
             user.destroy
             head :no_content
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     end 
 
     def user_params 
-        params.permit(:first_name, :last_name, :user_name, :email, :avatar)
+        params.permit(:first_name, :last_name, :user_name, :email, :avatar, :password)
        
     end 
 
