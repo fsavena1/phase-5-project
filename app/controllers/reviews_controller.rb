@@ -28,20 +28,20 @@ class ReviewsController < ApplicationController
         render json: {errors: e.record.errors.full_messages}, status: 406
     end 
 
-    def destroy
-        review = find_review
-        if review.present?
-            review.destroy
-            head :no_content
-        else 
-            render json: {error: "Review Not found"}, status 404
-        end 
-    end 
+    # def destroy
+    #     review = find_review
+    #     if review.present?
+    #         review.destroy
+    #         head :no_content
+    #     else 
+    #         render json: {error: "Review Not found"}, status 404
+    #     end 
+    # end 
 
     private 
 
     def review_params
-        params.permit(:body, :user_id, :movie_id)
+        params.permit(:body, :user_id,:rating, :movie_id )
     end 
 
     def find_review 

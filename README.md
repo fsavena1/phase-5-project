@@ -80,3 +80,19 @@ App
   - different rows for popular/ genres 
 
 - Filtering movies along with search results (sam and sandy phase 2 project)
+
+user review fav movie 
+
+user has many reviews and fav movies 
+
+user has many friend through reviews/rating source fav movies 
+review belongs to user 
+fav movie belongs to user has many ratings through reviews 
+ratings belong review 
+
+
+user has many reviews / movies/ favorites
+<!-- user has many fav_movies through favorites source movies caching -->
+review belongs to a user 
+movie 
+favorites belongs to a user 

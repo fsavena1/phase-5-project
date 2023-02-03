@@ -13,7 +13,9 @@ function App() {
   const api_key = process.env.REACT_APP_API_KEY
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState([]);
+  const [reviews, setReviews] = useState([])
   const [loading, setLoading] = useState(true)
+  const [errors, setErrors] = useState('')
   
 
   useEffect(() => {
@@ -41,6 +43,25 @@ function App() {
 
   console.log(movies);
 
+  useEffect(() => {
+    fetch("/reviews")
+      .then((res) => {
+        if (res.ok) {
+          res.json().then(data => {
+            setReviews(data);
+            setLoading(false);
+          })
+        } else {
+          res.json().then(data => setErrors(data.error))
+        }
+      })
+  }, []);
+
+  function addReview(newRev) {
+    setReviews([...reviews, newRev])
+  }
+
+
   function handleLogin(user){
     setUser(user)
   }
@@ -57,7 +78,7 @@ function App() {
         <Route exact path="/" element={<MovieContainer movies={movies} />} />
         <Route exact path="/signup" element={<SignUpPage setUser={setUser} /> } />
         <Route exact path="/login" element={<Login onLogin={handleLogin} /> } />
-        <Route exact path="/movie/:id" element={<MovieDetails user={user}/>} />
+        <Route exact path="/movie/:id" element={<MovieDetails user={user} addReview={addReview}/>} />
       </Routes>
     </div>
   );
